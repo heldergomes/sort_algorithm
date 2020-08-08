@@ -15,18 +15,28 @@ public class Main {
         for (int i = 0; i < lenghtOfList; i++) {
             list.add(random.nextInt(1000));
         }
+
+        String option = screen.showOptionAlgorithm();
         sb.append(" ---- LIST ---- \n");
-        list.stream().forEach(value -> sb.append(value + "\n"));
-        sb.append("\n");
+        sb.append(list + "\n\n");
 
-        SelectionSort selectionSort = new SelectionSort();
-        List<Integer> sortedlist = selectionSort.algorithm(list);
+        switch (option){
+            case "Selection Sort":
+                sb.append(" ---- SELECTION SORTED LIST ---- \n");
+                SelectionSort selectionSort = new SelectionSort();
+                List<Integer> sortedlist = selectionSort.algorithm(list);
+                sb.append(sortedlist + "\n\n");
+                break;
+            case "Quick Sort":
+                sb.append(" ---- QUICK SORTED LIST ---- \n");
+                QuickSort quickSort = new QuickSort();
+                quickSort.algorithm(list, 0, list.size()-1);
+                sb.append(list + "\n\n");
 
-        sb.append(" ---- SELECTION SORTED LIST ---- \n");
-        sortedlist.stream().forEach(value -> sb.append(value + "\n"));
-        sb.append("\n");
+        }
 
         screen.showResult(sb);
 
     }
+
 }
